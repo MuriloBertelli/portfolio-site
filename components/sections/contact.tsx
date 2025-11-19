@@ -175,6 +175,8 @@ export default function Contact() {
                 </a>
                 <a
                   href="https://github.com/MuriloBertelli"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center w-10 h-10 bg-accent rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
                   aria-label="GitHub"
                 >
