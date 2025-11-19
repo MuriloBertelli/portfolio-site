@@ -2,7 +2,12 @@
 
 import { useState, FormEvent } from 'react';
 import { Mail, MapPin, Linkedin, Github } from 'lucide-react';
-import { set } from 'date-fns';
+
+
+'use client';
+
+import { useState, FormEvent } from 'react';
+import { Mail, MapPin, Linkedin, Github } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -10,7 +15,9 @@ export default function Contact() {
     email: '',
     message: '',
   });
+
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -22,37 +29,42 @@ export default function Contact() {
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
+    e.preventDefault();
+    setIsSubmitted(false);
+    setIsSending(true);
 
-  try {
-    // Chama a serverless function da Netlify
-    const response = await fetch('/.netlify/functions/send-email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData), // { name, email, message }
-    });
+    try {
+      const response = await fetch('/.netlify/functions/send-email', {
+        // repara: **sem ponto na frente**, é caminho ABSOLUTO
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    if (!response.ok) {
-      console.error('Erro na resposta da função:', await response.text());
-      throw new Error('Falha ao enviar o email');
-    }
+      if (!response.ok) {
+        console.error('Erro na resposta da função:', await response.text());
+        alert('Ocorreu um erro ao enviar o e-mail. Tente novamente.');
+        return;
+      }
 
-    // Se deu tudo certo
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-
-    // limpa o formulário depois de alguns segundos
-    setTimeout(() => {
+      setIsSubmitted(true);
       setFormData({ name: '', email: '', message: '' });
-      setIsSubmitted(false);
-    }, 3000);
-  } catch (err) {
-    console.error('Erro ao enviar o formulário:', err);
-    alert('Erro ao enviar sua mensagem. Tenta de novo em alguns instantes.');
-  }
-};
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 3000);
+    } catch (error) {
+      console.error('Erro na requisição:', error);
+      alert('Ocorreu um erro ao enviar o e-mail. Tente novamente.');
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+
+
 
 
   return (
@@ -114,9 +126,14 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="w-full px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                disabled={isSending}
+                className="w-full px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:opacity-90 disabled:opacity-60 transition-opacity"
               >
-                {isSubmitted ? '✓ Enviado com sucesso!' : 'Enviar'}
+                {isSubmitted 
+                ? 'Enviando...' 
+                : isSending 
+                  ? '✓ Enviado com sucesso!'
+                  : 'Enviar'}
               </button>
             </form>
           </div>
@@ -132,10 +149,10 @@ export default function Contact() {
                   <div>
                     <p className="font-semibold text-foreground">Email</p>
                     <a
-                      href="mailto:murilo@example.com"
+                      href="mailto:mrlbertelli@gmail.com"
                       className="text-primary hover:text-primary/80 transition-colors"
                     >
-                      murilo@example.com
+                      mrlbertelli@gmail.com
                     </a>
                   </div>
                 </div>
@@ -154,14 +171,14 @@ export default function Contact() {
               <h3 className="text-lg font-bold text-foreground mb-4">Redes Sociais</h3>
               <div className="flex gap-4">
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/murilo-bertelli-7a6249248/"
                   className="inline-flex items-center justify-center w-10 h-10 bg-accent rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
                   aria-label="LinkedIn"
                 >
                   <Linkedin size={20} />
                 </a>
                 <a
-                  href="#"
+                  href="https://github.com/MuriloBertelli"
                   className="inline-flex items-center justify-center w-10 h-10 bg-accent rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
                   aria-label="GitHub"
                 >
