@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from 'react';
 import { Mail, MapPin, Linkedin, Github } from 'lucide-react';
+import { set } from 'date-fns';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -17,18 +18,42 @@ export default function Contact() {
       ...prev,
       [name]: value,
     }));
+    setIsSubmitted(false);
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Here you would typically send the form data to a server
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  try {
+    // Chama a serverless function da Netlify
+    const response = await fetch('/.netlify/functions/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData), // { name, email, message }
+    });
+
+    if (!response.ok) {
+      console.error('Erro na resposta da função:', await response.text());
+      throw new Error('Falha ao enviar o email');
+    }
+
+    // Se deu tudo certo
     console.log('Form submitted:', formData);
     setIsSubmitted(true);
+
+    // limpa o formulário depois de alguns segundos
     setTimeout(() => {
       setFormData({ name: '', email: '', message: '' });
       setIsSubmitted(false);
     }, 3000);
-  };
+  } catch (err) {
+    console.error('Erro ao enviar o formulário:', err);
+    alert('Erro ao enviar sua mensagem. Tenta de novo em alguns instantes.');
+  }
+};
+
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
