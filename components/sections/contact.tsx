@@ -3,12 +3,6 @@
 import { useState, FormEvent } from 'react';
 import { Mail, MapPin, Linkedin, Github } from 'lucide-react';
 
-
-'use client';
-
-import { useState, FormEvent } from 'react';
-import { Mail, MapPin, Linkedin, Github } from 'lucide-react';
-
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
