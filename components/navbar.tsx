@@ -1,9 +1,7 @@
 'use client';
 import { useTheme } from "@/hooks/use-theme";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
 
 interface NavbarProps {
   activeSection: string;
@@ -21,8 +19,9 @@ export default function Navbar({ activeSection }: NavbarProps) {
     { label: 'Educação', id: 'educacao' },
     { label: 'Contato', id: 'contato' },
   ];
+
   const { theme, toggleTheme } = useTheme();
-  
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -30,6 +29,16 @@ export default function Navbar({ activeSection }: NavbarProps) {
       setIsOpen(false);
     }
   };
+
+  const ThemeToggle = () => (
+    <button
+      onClick={toggleTheme}
+      aria-label={theme === 'light' ? 'Ativar modo escuro' : 'Ativar modo claro'}
+      className="p-2 rounded-md border border-border text-foreground hover:bg-accent hover:text-primary transition-colors"
+    >
+      {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+    </button>
+  );
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
@@ -60,10 +69,16 @@ export default function Navbar({ activeSection }: NavbarProps) {
                 {item.label}
               </button>
             ))}
+
+            {/* <-- AQUI: Botão de tema no desktop */}
+            <ThemeToggle />
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          {/* Mobile: toggle + menu button */}
+          <div className="flex items-center gap-3 md:hidden">
+            {/* <-- Botão de tema no mobile */}
+            <ThemeToggle />
+
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 text-foreground hover:text-primary transition-colors"
