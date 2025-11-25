@@ -33,12 +33,15 @@ export default function About() {
           </div>
 
           <div className="flex items-center justify-center">
-            <div className="w-40 h-40 bg-gradient-to-br from-primary to-primary/60 rounded-lg shadow-lg flex items-center justify-center text-primary-foreground text-4xl font-bold">
-              MO
+             <img
+                src="/profile.jpg"
+                alt="Murilo Otavio Bertelli Cristiano"
+                className="w-40 h-40 rounded-lg shadow-lg object-cover"
+              />
             </div>
           </div>
         </div>
-      </div>
+    
     </section>
   );
 }
