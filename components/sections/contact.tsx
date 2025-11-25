@@ -155,7 +155,7 @@ export default function Contact() {
                   <MapPin className="text-primary mt-1 flex-shrink-0" size={24} />
                   <div>
                     <p className="font-semibold text-foreground">Localização</p>
-                    <p className="text-muted-foreground">São Paulo, Brasil</p>
+                    <p className="text-muted-foreground">Curitiba, Brasil</p>
                   </div>
                 </div>
               </div>
