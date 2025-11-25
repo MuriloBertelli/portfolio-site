@@ -1,5 +1,6 @@
 'use client';
-
+import { useTheme } from "@/hooks/use-theme";
+import { Sun, Moon } from "lucide-react";
 import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
@@ -20,7 +21,8 @@ export default function Navbar({ activeSection }: NavbarProps) {
     { label: 'Educação', id: 'educacao' },
     { label: 'Contato', id: 'contato' },
   ];
-
+  const { theme, toggleTheme } = useTheme();
+  
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
