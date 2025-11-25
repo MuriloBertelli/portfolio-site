@@ -1,33 +1,33 @@
 export default function Experience() {
   const experiences = [
     {
-      role: 'Senior Developer',
-      company: 'Tech Startup',
-      period: '2023 - Presente',
+      role: 'Gerente de Projetos – Drivetrain',
+      company: 'PUCPR Racing • Fórmula SAE',
+      period: '2024 - 2025/07',
       achievements: [
-        'Liderou desenvolvimento de arquitetura de frontend com React e Next.js',
-        'Implementou sistema de caching que melhorou performance em 40%',
-        'Mentorou 3 desenvolvedores junior no time',
+        'Gestão de equipe multidisciplinar no desenvolvimento do sistema de transmissão (Drivetrain) do veículo de competição',
+        'Coordenação de cálculos de relação de transmissão, fabricação e testes de componentes mecânicos',
+        'Integração do Drivetrain com outros subsistemas e treinamento de novos integrantes para a temporada F-SAE 2025',
       ],
     },
     {
-      role: 'Full Stack Developer',
-      company: 'Digital Agency',
-      period: '2021 - 2023',
+      role: 'Projetista Powertrain',
+      company: 'PUCPR Racing • Fórmula SAE',
+      period: '2024',
       achievements: [
-        'Desenvolveu 15+ projetos web para clientes de diversos segmentos',
-        'Implementou CI/CD pipelines usando GitHub Actions e Docker',
-        'Reduziu tempo de carregamento do site em 60% através de otimizações',
+        'Realizou simulações do sistema de admissão e exaustão no Ricardo WAVE para otimizar curvas de torque e potência',
+        'Aplicou equações de escoamento (Bernoulli, Navier–Stokes, Darcy–Weisbach) em cenários reais de projeto',
+        'Participou da fabricação de componentes como plenum e coletores em fibra de vidro, em parceria com fornecedores técnicos',
       ],
     },
     {
-      role: 'Junior Developer',
-      company: 'Web Development Studio',
-      period: '2020 - 2021',
+      role: 'Empreendedor – Marca Própria de Vestuário (LifeStyles)',
+      company: 'Negócio próprio em e-commerce',
+      period: '2019 - 2021',
       achievements: [
-        'Contribuiu no desenvolvimento de aplicações web responsivas',
-        'Aprendeu e aplicou best practices de desenvolvimento',
-        'Auxiliou na manutenção de código legado e refatoração',
+        'Criou e gerenciou uma marca autoral de camisetas e moletons com foco em vendas online',
+        'Atuou em branding, marketing digital, relacionamento com fornecedores, logística e controle de estoque',
+        'Desenvolveu organização, visão de negócio e resiliência ao lidar com desafios operacionais e de crescimento',
       ],
     },
   ];
