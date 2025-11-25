@@ -28,13 +28,16 @@ export default function Contact() {
     setIsSending(true);
 
     try {
+      const formElement = e.currentTarget;
+      const formData = new FormData(formElement);
+      const payload = Object.fromEntries(formData.entries());
+
       const response = await fetch('/.netlify/functions/send-email', {
-        // repara: **sem ponto na frente**, é caminho ABSOLUTO
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
@@ -44,7 +47,7 @@ export default function Contact() {
       }
 
       setIsSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
+      formElement.reset(); // limpa tudo
 
       setTimeout(() => {
         setIsSubmitted(false);
@@ -61,6 +64,7 @@ export default function Contact() {
 
 
 
+
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
@@ -70,7 +74,15 @@ export default function Contact() {
           {/* Contact Form */}
           <div>
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
+              {/* Honeypot - campo escondido para bot burro */}
+              <input
+                type="text"
+                name="company"          
+                autoComplete="off"
+                tabIndex={-1}
+                className="hidden"      
+              />
+                <div>
                 <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                   Nome
                 </label>

@@ -11,6 +11,23 @@ export const handler = async (event) => {
       body: JSON.stringify({ error: 'Method not allowed' }),
     };
   }
+  
+  const body = JSON.parse(event.body || "{}")
+
+  // Honeypot: se esse campo vier preenchido, tratamos como bot
+  if (body.company) {
+    console.warn("Honeypot acionado - BOT detectado", {
+      // log minimalista, sem dados sensíveis demais
+      timestamp: new Date().toISOString(),
+    });
+
+    // Responde 200 para o bot achar que deu tudo certo,
+    // mas NÃO envia email e não processa mais nada.
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ success: true }),
+    };
+  }
 
   try {
     const { name, email, message } = JSON.parse(event.body || '{}');
