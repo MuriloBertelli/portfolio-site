@@ -22,13 +22,15 @@ export default function Hero() {
         </div>
 
         <p className="text-xl sm:text-2xl text-muted-foreground mb-4 animate-in slide-in-from-bottom-4 duration-1000 fill-mode-both delay-100">
-          Desenvolvedor Web / Software Developer
+          Engenheiro de Software Embarcado / Embedded Software Engineer
         </p>
 
         <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed animate-in slide-in-from-bottom-4 duration-1000 fill-mode-both delay-200">
-          Criando experiências digitais inovadoras através de código limpo e design atencioso.
+          Criando soluções integradas de hardware e software para sistemas embarcados de alto desempenho por 
+          meio de código otimizado e simulações avançadas. Especializado em C/C++, Python e MATLAB, com 
+          experiência em simulações computacionais com o software Ricardo WAVE e liderança técnica na equipe PUCPR Racing.
           <br />
-          Especializado em React, Next.js e arquitetura de software escalável.
+          Possui experiência complementar em desenvolvimento web (React, Next.js).
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-in slide-in-from-bottom-4 duration-1000 fill-mode-both delay-300">
