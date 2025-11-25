@@ -1,21 +1,56 @@
 export default function Skills() {
   const skillsGroups = [
-    {
-      category: 'Frontend',
-      skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Vue.js', 'HTML/CSS'],
+ {
+      category: 'Sistemas Embarcados',
+      skills: [
+        'C',
+        'C++',
+        'Sistemas Embarcados',
+        'Microcontroladores (AVR/ARM)',
+        'UART / SPI / I2C',
+        'Ponteiros e Gerenciamento de Memória',
+        'Programação de Baixo Nível',
+        'Eletrônica Embarcada',
+      ],
     },
     {
-      category: 'Backend',
-      skills: ['Node.js', 'Express', 'PostgreSQL', 'MongoDB', 'GraphQL', 'REST APIs'],
+      category: 'Simulações & Engenharia',
+      skills: [
+        'MATLAB',
+        'Simulink',
+        'Ricardo WAVE',
+        'Dinâmica de Fluidos (Bernoulli / Navier-Stokes / Darcy-Weisbach)',
+        'Model-Based Design',
+        'CAD (AutoCAD / SolidWorks)',
+      ],
     },
     {
-      category: 'Tools & DevOps',
-      skills: ['Git', 'Docker', 'GitHub Actions', 'Vercel', 'AWS', 'Linux'],
+      category: 'Algoritmos & Software',
+      skills: [
+        'Estruturas de Dados',
+        'Algoritmos Probabilísticos',
+        'Análise de Complexidade',
+        'Programação Imperativa',
+        'Python',
+        'JavaScript',
+      ],
     },
     {
-      category: 'Outras Tecnologias',
-      skills: ['Python', 'JavaScript', 'Firebase', 'Redis', 'Figma', 'Agile'],
+      category: 'Ferramentas & DevOps',
+      skills: [
+        'Linux',
+        'Git',
+        'GDB',
+        'Makefile',
+        'Docker',
+        'GitHub Actions',
+      ],
     },
+    {
+      category: 'Frontend (Complementar)',
+      skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML/CSS'],
+    },
+
   ];
 
   return (
