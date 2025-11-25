@@ -3,47 +3,70 @@ import { Github, ExternalLink } from 'lucide-react';
 export default function Projects() {
   const projects = [
     {
-      title: 'E-commerce Platform',
-      description: 'Plataforma de e-commerce completa com sistema de pagamento integrado, gerenciamento de estoque e dashboard administrativo.',
-      tags: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-      github: '#',
-      demo: '#',
+      title: 'Portfólio Pessoal',
+      description:
+        'Website profissional desenvolvido com Next.js e Tailwind CSS, apresentando minhas experiências, projetos e habilidades em engenharia de software e sistemas embarcados.',
+      tags: ['Next.js', 'React', 'Tailwind', 'TypeScript'],
+      github: 'https://github.com/MuriloBertelli/portfolio-site',
+      demo: '/',
     },
     {
-      title: 'Task Management App',
-      description: 'Aplicação web para gerenciamento de tarefas com autenticação de usuários, sincronização em tempo real e interface intuitiva.',
-      tags: ['Next.js', 'TypeScript', 'Firebase', 'Tailwind'],
-      github: '#',
-      demo: '#',
+      title: 'Pac-Man em C++',
+      description:
+        'Implementação do clássico Pac-Man utilizando C++, abordando conceitos de orientação a objetos, manipulação de matriz, lógica de colisão e atualização de estados.',
+      tags: ['C++', 'OOP', 'Game Logic'],
+      github: 'https://github.com/MuriloBertelli/PacMan',
+      demo: '',
     },
     {
-      title: 'Analytics Dashboard',
-      description: 'Dashboard de análise de dados com visualizações interativas, relatórios customizáveis e integração com múltiplas fontes.',
-      tags: ['React', 'D3.js', 'Express', 'MongoDB'],
-      github: '#',
-      demo: '#',
+      title: 'Programação Imperativa em C',
+      description:
+        'Repositório contendo dezenas de exercícios práticos da disciplina de Programação Imperativa. Inclui estruturas de dados básicas, ponteiros, vetores, matrizes e lógica algorítmica.',
+      tags: ['C', 'Algoritmos', 'Estruturas de Dados'],
+      github: 'https://github.com/MuriloBertelli/imperative-programming-c-course',
+      demo: '',
     },
     {
-      title: 'Weather App',
-      description: 'Aplicação weather com dados em tempo real, geolocalização e interface responsiva. Integrada com API de clima.',
-      tags: ['React Native', 'API REST', 'Expo', 'Context API'],
-      github: '#',
-      demo: '#',
+      title: 'Algoritmos Probabilísticos',
+      description:
+        'Implementações de algoritmos probabilísticos em C e Python, explorando temas como complexidade, randomização, hashing e geração pseudoaleatória.',
+      tags: ['C', 'Python', 'Probabilidade', 'Algoritmos'],
+      github: 'https://github.com/MuriloBertelli/algoritmos-probabilisticos',
+      demo: '',
     },
     {
-      title: 'Blog Platform',
-      description: 'Plataforma de blog moderna com suporte a markdown, sistema de comentários e SEO otimizado.',
-      tags: ['Next.js', 'MDX', 'GraphQL', 'Vercel'],
-      github: '#',
-      demo: '#',
+      title: 'Gerador de Certificados',
+      description:
+        'Sistema automatizado para geração de certificados em PDF, com personalização de dados, templates e exportação automática.',
+      tags: ['Python', 'PDF Generator', 'Automação'],
+      github: 'https://github.com/MuriloBertelli/certificate-generator',
+      demo: '',
     },
     {
-      title: 'Social Network',
-      description: 'Rede social com feed interativo, sistema de mensagens em tempo real e gerenciamento de perfil de usuários.',
-      tags: ['MERN', 'Socket.io', 'JWT', 'Redis'],
-      github: '#',
-      demo: '#',
+      title: 'Sistema Bancário',
+      description:
+        'Aplicação simulada de operações bancárias como depósitos, saques e criação de usuários. Feita com foco em lógica, estruturas de dados e manipulação de arquivos.',
+      tags: ['C++', 'Lógica', 'Arquivos'],
+      github: 'https://github.com/MuriloBertelli/__Bank__',
+      demo: '',
     },
+     {
+      title: 'Loja de Materiais de Construção',
+      description:
+        'Protótipo de e-commerce de materiais de construção, com carrinho, listagem de produtos e lógica de cálculo de compras.',
+      tags: ['python', 'kivy', 'CSS'],
+      github: 'https://github.com/MuriloBertelli/building-materials-store',
+      demo: '',
+  },
+    {
+      title: 'Validador de CPF',
+      description:
+        'Implementação do algoritmo oficial de validação de CPF, incluindo cálculo dos dígitos verificadores e tratamento de exceções. Um dos projetos mais interessantes e matemáticos do portfólio.',
+      tags: ['C', 'Algoritmos', 'Validação'],
+      github: 'https://github.com/MuriloBertelli/-ValidationCPF-',
+      demo: '',
+    },
+    
   ];
 
   return (
