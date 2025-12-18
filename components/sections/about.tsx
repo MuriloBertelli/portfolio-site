@@ -7,7 +7,7 @@ export default function About() {
         <div className="grid md:grid-cols-3 gap-8">
           <div className="md:col-span-2">
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
-              Formado em Engenharia de Computação, atuo com foco em engenharia de software para sistemas 
+              Graduando em Engenharia de Computação, atuo com foco em engenharia de software para sistemas 
               embarcados. Domino linguagens como C, C++ e Python, e utilizo ferramentas de simulação (como MATLAB
               e Ricardo WAVE) para projetar e otimizar sistemas complexos. Minha atuação abrange a integração de
               hardware e software, apoiada por uma base sólida em lógica de programação e estruturas de dados. Essa 
