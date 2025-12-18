@@ -3,6 +3,16 @@ import { Github, ExternalLink } from 'lucide-react';
 export default function Projects() {
   const projects = [
     {
+      title: 'Sistema de Planejamento de Matéria-Prima',
+      description:
+        'Solução industrial para cálculo automatizado de fórmulas químicas. Realiza o cálculo de múltiplos lotes simultâneos, consolidação de estoque para separação e exportação de relatórios técnicos em PDF.',
+      tags: ['Next.js', 'TypeScript', 'Netlify Functions', 'Tailwind CSS'],
+      github: 'https://github.com/MuriloBertelli', 
+      demo: 'https://vertex-lab.netlify.app', 
+    },
+
+
+    {
       title: 'Portfólio Pessoal',
       description:
         'Website profissional desenvolvido com Next.js e Tailwind CSS, apresentando minhas experiências, projetos e habilidades em engenharia de software e sistemas embarcados.',
@@ -66,16 +76,7 @@ export default function Projects() {
       github: 'https://github.com/MuriloBertelli/-ValidationCPF-',
       demo: '',
     },
-
-    {
-      title: 'Sistema de Planejamento de Matéria-Prima',
-      description:
-        'Solução industrial para cálculo automatizado de fórmulas químicas. Realiza o cálculo de múltiplos lotes simultâneos, consolidação de estoque para separação e exportação de relatórios técnicos em PDF.',
-      tags: ['Next.js', 'TypeScript', 'Netlify Functions', 'Tailwind CSS'],
-      github: 'https://github.com/MuriloBertelli', 
-      demo: 'https://vertex-lab.netlify.app', 
-    },
-    
+ 
   ];
 
   return (
