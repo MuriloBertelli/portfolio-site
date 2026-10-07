@@ -35,4 +35,4 @@ A seção do notebook tem apresentação estática em telas pequenas e quando o 
 
 O material de referência está em `E:\04-dev\docs_for_portfolio`. O dossiê auditado da pasta separa código revisado, documentação, estudos e propostas. Os cases corporativos do site usam texto genérico e não publicam achados, nomes de clientes ou imagens internas. As fotos originais não são servidas publicamente; somente os WebP sem metadados estão em `public/`.
 
-O formulário de contato usa a função Netlify em `netlify/functions/send-email.js`; o envio real depende da configuração das variáveis do ambiente Netlify.
+O formulário de contato usa a função Netlify em `netlify/functions/send-email.js`. Para ativar o envio, configure `RESEND_API_KEY`, `EMAIL_TO` e `EMAIL_FROM` no ambiente do site no Netlify. `EMAIL_FROM` precisa ser um remetente autorizado no Resend. Sem a chave, a função retorna `503` e a seção mantém o contato direto por e-mail.

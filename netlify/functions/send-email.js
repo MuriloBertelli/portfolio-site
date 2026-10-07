@@ -1,7 +1,5 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const escapeHtml = (value) =>
   String(value).replace(
     /[&<>"']/g,
@@ -63,9 +61,19 @@ export const handler = async (event) => {
       };
     }
 
+    const resendApiKey = process.env.RESEND_API_KEY;
+    if (!resendApiKey) {
+      console.error("Contato indisponível: RESEND_API_KEY não configurada.");
+      return {
+        statusCode: 503,
+        body: JSON.stringify({ error: "Email service unavailable" }),
+      };
+    }
+
     const TO_EMAIL = process.env.EMAIL_TO || "mrlbertelli@gmail.com";
     const FROM_EMAIL = process.env.EMAIL_FROM || "onboarding@resend.dev";
 
+    const resend = new Resend(resendApiKey);
     const result = await resend.emails.send({
       from: `Portfólio <${FROM_EMAIL}>`,
       to: [TO_EMAIL],
