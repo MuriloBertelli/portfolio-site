@@ -1,0 +1,540 @@
+.chapter {
+  --lab-bg: #050b13;
+  --lab-panel: #0c1725;
+  --lab-line: rgba(113, 168, 202, 0.23);
+  --lab-cyan: #67d7f6;
+  --lab-white: #eef7fc;
+  color: var(--lab-white);
+  background: var(--lab-bg);
+  overflow: clip;
+  font-family: inherit;
+}
+
+.eyebrow {
+  display: inline-block;
+  color: var(--lab-cyan);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.desktopHeading p {
+  max-width: 42rem;
+  color: #b6c8d5;
+  font-size: clamp(1rem, 1.45vw, 1.22rem);
+  line-height: 1.65;
+}
+
+.runway {
+  position: relative;
+  min-height: 100svh;
+  background: radial-gradient(
+    ellipse 65% 40% at 50% 55%,
+    #0b2340 0,
+    #050b13 65%
+  );
+}
+
+.runway[data-motion="on"] {
+  height: 350svh;
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.aura {
+  position: absolute;
+  width: min(85vw, 78rem);
+  height: min(50vw, 36rem);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    rgba(20, 82, 125, 0.27),
+    transparent 68%
+  );
+  filter: blur(3rem);
+}
+
+.laptop {
+  position: relative;
+  z-index: 1;
+  width: min(96vw, 82rem, 145svh);
+  aspect-ratio: 3 / 2;
+  transform-origin: 50% 60%;
+  will-change: transform, opacity;
+}
+
+.frame,
+.fallbackFrame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.frame {
+  opacity: 0;
+}
+.fallbackFrame {
+  opacity: 1;
+}
+
+.portal {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 58% 36%,
+      rgba(35, 152, 208, 0.19),
+      transparent 36%
+    ),
+    linear-gradient(135deg, #07121f, #02060d 78%);
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: 50% 36%;
+  visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.runway[data-motion="on"] .portal {
+  visibility: visible;
+}
+
+.portalTopbar {
+  position: absolute;
+  z-index: 2;
+  top: var(--site-header-height);
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 4rem;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid var(--lab-line);
+  background: rgba(5, 12, 22, 0.86);
+  color: #91b8cc;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.75rem;
+}
+
+.portalLauncher {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid rgba(103, 215, 246, 0.75);
+  border-radius: 0.5rem;
+  color: var(--lab-cyan);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.portalClock {
+  margin-left: auto;
+}
+
+.portalIntro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  will-change: opacity;
+}
+
+.portalMark {
+  display: grid;
+  place-items: center;
+  width: 5.6rem;
+  height: 5.6rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(103, 215, 246, 0.65);
+  border-radius: 1.4rem;
+  box-shadow: 0 0 4rem rgba(27, 163, 222, 0.27);
+  color: var(--lab-cyan);
+  font-size: 3.2rem;
+  font-weight: 600;
+}
+
+.portal p {
+  margin: 0 0 0.8rem;
+  color: var(--lab-cyan);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+}
+
+.portal strong {
+  font-size: clamp(2rem, 5vw, 5rem);
+  letter-spacing: -0.055em;
+  font-weight: 600;
+}
+
+.portalMenu {
+  position: absolute;
+  z-index: 3;
+  top: calc(var(--site-header-height) + 4.6rem);
+  left: 1.5rem;
+  width: min(29rem, calc(100% - 3rem));
+  padding: 1.4rem;
+  border: 1px solid rgba(103, 215, 246, 0.42);
+  border-radius: 1rem;
+  background: rgba(8, 26, 43, 0.97);
+  box-shadow: 0 1.5rem 5rem rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transform: translate3d(0, -1rem, 0) scale(0.96);
+  transform-origin: top left;
+  will-change: transform, opacity;
+}
+
+.portalMenuHeader,
+.portalMenuFooter {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--lab-cyan);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.11em;
+}
+
+.portalMenu ul {
+  display: grid;
+  gap: 0;
+  margin: 1rem 0;
+  padding: 0;
+  border-top: 1px solid var(--lab-line);
+  list-style: none;
+}
+
+.portalMenu li {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  min-height: 3.1rem;
+  border-bottom: 1px solid var(--lab-line);
+  color: #e7f3fa;
+  font-size: 0.95rem;
+}
+
+.portalMenu li span {
+  color: var(--lab-cyan);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.7rem;
+}
+
+.portalMenuFooter {
+  padding-top: 0.3rem;
+  color: #9ebccc;
+}
+
+.portalCursor {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  width: 1.5rem;
+  height: 1.875rem;
+  opacity: 0;
+  filter: drop-shadow(0 2px 6px rgba(103, 215, 246, 0.65));
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.stageCaption {
+  position: absolute;
+  z-index: 3;
+  right: max(1.5rem, calc((100vw - 76rem) / 2));
+  bottom: 2rem;
+  left: max(1.5rem, calc((100vw - 76rem) / 2));
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #9db5c5;
+  font-size: 0.67rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.desktop {
+  position: relative;
+  z-index: 4;
+  min-height: 100svh;
+  background:
+    radial-gradient(
+      circle at 78% 12%,
+      rgba(21, 97, 139, 0.15),
+      transparent 30%
+    ),
+    #050b13;
+  border-top: 1px solid var(--lab-line);
+}
+
+.desktopTopbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(100% - 3rem, 76rem);
+  min-height: 4.3rem;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--lab-line);
+  color: #8eb2c4;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.72rem;
+}
+
+.desktopBrand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #e5f5fc;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.brandMark {
+  display: grid;
+  place-items: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  border: 1px solid var(--lab-cyan);
+  border-radius: 0.35rem;
+  color: var(--lab-cyan);
+  font-size: 0.85rem;
+}
+
+.desktopStatus {
+  color: #8fd8bd;
+}
+
+.desktopContent {
+  width: min(100% - 3rem, 76rem);
+  margin: 0 auto;
+  padding: clamp(5rem, 9vw, 9rem) 0 clamp(6rem, 11vw, 11rem);
+}
+
+.desktopHeading h2 {
+  margin: 1rem 0 1.4rem;
+  font-size: clamp(2.6rem, 6vw, 5.7rem);
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+  font-weight: 600;
+}
+
+.explorer {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  gap: clamp(1rem, 5vw, 5rem);
+  min-height: 21rem;
+  margin-top: clamp(4rem, 8vw, 8rem);
+  padding: clamp(2rem, 5vw, 4.5rem);
+  border: 1px solid var(--lab-line);
+  border-radius: 1.5rem;
+  background: linear-gradient(
+    125deg,
+    rgba(15, 42, 65, 0.85),
+    rgba(7, 18, 31, 0.94)
+  );
+  box-shadow: 0 1.5rem 7rem rgba(0, 0, 0, 0.28);
+}
+
+.rangeRail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: #7eb5ce;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.7rem;
+}
+
+.rangeRail input {
+  width: 1.9rem;
+  height: 11.5rem;
+  accent-color: var(--lab-cyan);
+  cursor: pointer;
+  writing-mode: vertical-lr;
+  direction: ltr;
+}
+
+.rangeRail input:focus-visible {
+  outline: 2px solid var(--lab-cyan);
+  outline-offset: 0.4rem;
+  border-radius: 0.4rem;
+}
+
+.spotlight {
+  align-self: center;
+  max-width: 46rem;
+}
+
+.spotlightIndex,
+.verified {
+  color: var(--lab-cyan);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.13em;
+}
+
+.spotlight h3 {
+  margin: 1.2rem 0 0.8rem;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.055em;
+  font-weight: 600;
+}
+
+.spotlight p {
+  max-width: 39rem;
+  margin-bottom: 2rem;
+  color: #b7cbda;
+  font-size: clamp(1rem, 1.6vw, 1.24rem);
+  line-height: 1.6;
+}
+
+.toolGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: clamp(5rem, 9vw, 9rem) 0 0;
+  padding: 1px;
+  background: var(--lab-line);
+  list-style: none;
+}
+
+.toolCard {
+  min-height: 15rem;
+  padding: clamp(1.4rem, 2.6vw, 2.6rem);
+  background: var(--lab-bg);
+}
+
+.toolCard > span {
+  color: var(--lab-cyan);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.72rem;
+}
+
+.toolCard h3 {
+  margin: 2.5rem 0 0.75rem;
+  font-size: 1.35rem;
+  letter-spacing: -0.025em;
+}
+
+.toolCard p {
+  margin: 0;
+  color: #a9bfcc;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 767px) {
+  .desktopTopbar,
+  .desktopContent {
+    width: min(100% - 2.5rem, 76rem);
+  }
+  .runway {
+    min-height: 56svh;
+  }
+  .stage {
+    height: 56svh;
+  }
+  .laptop {
+    width: min(100vw, 40rem);
+  }
+  .portal,
+  .stageCaption,
+  .desktopPath {
+    display: none;
+  }
+  .desktopTopbar {
+    font-size: 0.61rem;
+  }
+  .desktopStatus {
+    white-space: nowrap;
+  }
+  .explorer {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .rangeRail {
+    flex-direction: row;
+  }
+  .rangeRail input {
+    width: 100%;
+    height: 2rem;
+    writing-mode: horizontal-tb;
+    direction: ltr;
+  }
+  .toolGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .desktopStatus {
+    display: none;
+  }
+  .toolGrid {
+    grid-template-columns: 1fr;
+  }
+  .toolCard {
+    min-height: 12rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .runway {
+    height: auto !important;
+  }
+  .laptop {
+    transform: none !important;
+    opacity: 1 !important;
+    will-change: auto;
+  }
+  .frame {
+    opacity: 0 !important;
+  }
+  .fallbackFrame {
+    opacity: 1 !important;
+  }
+  .portal {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .explorer {
+    background: #0c1725;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .chapter {
+    --lab-line: rgba(227, 246, 255, 0.6);
+  }
+  .desktopHeading p,
+  .spotlight p,
+  .toolCard p {
+    color: #e5f3fb;
+  }
+}

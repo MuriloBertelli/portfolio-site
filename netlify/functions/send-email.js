@@ -1,18 +1,35 @@
-
-import { Resend } from 'resend';
+import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const escapeHtml = (value) =>
+  String(value).replace(
+    /[&<>"']/g,
+    (character) =>
+      ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      })[character],
+  );
+
 export const handler = async (event) => {
   // Só aceita POST
-  if (event.httpMethod !== 'POST') {
+  if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      body: JSON.stringify({ error: 'Method not allowed' }),
+      body: JSON.stringify({ error: "Method not allowed" }),
     };
   }
-  
-  const body = JSON.parse(event.body || "{}")
+
+  let body;
+  try {
+    body = JSON.parse(event.body || "{}");
+  } catch {
+    return { statusCode: 400, body: JSON.stringify({ error: "Invalid JSON" }) };
+  }
 
   // Honeypot: se esse campo vier preenchido, tratamos como bot
   if (body.company) {
@@ -30,17 +47,24 @@ export const handler = async (event) => {
   }
 
   try {
-    const { name, email, message } = JSON.parse(event.body || '{}');
+    const { name, email, message } = body;
 
-    if (!name || !email || !message) {
+    if (
+      typeof name !== "string" ||
+      typeof email !== "string" ||
+      typeof message !== "string" ||
+      !name.trim() ||
+      !email.trim() ||
+      !message.trim()
+    ) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'Missing fields' }),
+        body: JSON.stringify({ error: "Missing fields" }),
       };
     }
 
-    const TO_EMAIL = process.env.EMAIL_TO || 'mrlbertelli@gmail.com';
-    const FROM_EMAIL = process.env.EMAIL_FROM || 'onboarding@resend.dev';
+    const TO_EMAIL = process.env.EMAIL_TO || "mrlbertelli@gmail.com";
+    const FROM_EMAIL = process.env.EMAIL_FROM || "onboarding@resend.dev";
 
     const result = await resend.emails.send({
       from: `Portfólio <${FROM_EMAIL}>`,
@@ -50,24 +74,30 @@ export const handler = async (event) => {
       text: `Nome: ${name}\nEmail: ${email}\n\nMensagem:\n${message}`,
       html: `
         <h2>Nova mensagem do portfólio</h2>
-        <p><strong>Nome:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Nome:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
         <p><strong>Mensagem:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>
       `,
     });
 
-    console.log('Resend result:', result);
+    if (result.error) {
+      console.error("Resend error:", result.error);
+      return {
+        statusCode: 502,
+        body: JSON.stringify({ error: "Email service error" }),
+      };
+    }
 
     return {
       statusCode: 200,
       body: JSON.stringify({ success: true }),
     };
   } catch (err) {
-    console.error('Erro ao enviar e-mail:', err);
+    console.error("Erro ao enviar e-mail:", err);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to send email' }),
+      body: JSON.stringify({ error: "Failed to send email" }),
     };
   }
 };

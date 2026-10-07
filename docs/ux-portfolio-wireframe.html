@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wireframe UX — Portfólio</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: #222; background: #f2f2f2; line-height: 1.5; }
+    a { color: inherit; }
+    a:focus-visible { outline: 3px solid #333; outline-offset: 4px; }
+    header { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding: 1rem 4vw; background: #fff; border-bottom: 1px solid #aaa; }
+    nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+    main section { min-height: 72vh; padding: 5rem 4vw; border-bottom: 1px solid #bbb; }
+    h1 { max-width: 13ch; font-size: clamp(2.5rem, 7vw, 6rem); line-height: 1; }
+    h2 { font-size: clamp(2rem, 4vw, 4rem); line-height: 1.1; }
+    p { max-width: 60ch; }
+    .tag { display: inline-block; padding: .25rem .6rem; border: 1px solid #777; border-radius: 99px; font-size: .75rem; }
+    .button { display: inline-block; padding: .7rem 1rem; border: 1px solid #333; background: #ddd; text-decoration: none; margin: .5rem .5rem .5rem 0; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; padding: 3rem 0; border-top: 1px solid #aaa; }
+    .placeholder { display: grid; place-items: center; min-height: 17rem; padding: 1rem; border: 2px dashed #999; background: #ddd; text-align: center; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+    article { padding: 1.5rem; border: 1px solid #aaa; background: #fff; }
+    #cyber .placeholder { min-height: 24rem; }
+    @media (max-width: 700px) { .row { grid-template-columns: 1fr; } main section { min-height: auto; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <header><strong>Murilo Bertelli</strong><nav aria-label="Navegação principal"><a href="#trajetoria">Trajetória</a><a href="#cyber">Laboratório</a><a href="#projetos">Projetos</a><a href="#contato">Contato</a></nav></header>
+  <main>
+    <section id="inicio"><span class="tag">1 · Apresentação</span><h1>Construir, entender, proteger.</h1><p>Engenharia, software e segurança conectados por uma trajetória.</p><a class="button" href="#trajetoria">Explore a trajetória</a><a class="button" href="#projetos">Ver projetos</a></section>
+    <section id="trajetoria"><span class="tag">2 · Linha do tempo</span><h2>Uma mudança de escala, a mesma curiosidade.</h2><div class="row"><div><small>2022–2026 · Engenharia</small><h3>Pensar como engenheiro.</h3><p>Uma ideia principal e um detalhe por bloco.</p></div><div class="placeholder">Foto de bancada tratada para web</div></div><div class="row"><div><small>2024–2025 · Fórmula SAE</small><h3>Quando a teoria encontra a pista.</h3><p>Powertrain, Drivetrain, simulação e integração.</p></div><div class="placeholder">Foto de pista tratada para web</div></div><div class="row"><div><small>2026 · AppSec</small><h3>Projetar também para resistir.</h3><p>Texto público sem achados ou material corporativo sensível.</p></div><div class="placeholder">Composição editorial abstrata</div></div></section>
+    <section id="cyber"><span class="tag">3 · Laboratório</span><h2>Abra o ambiente. Explore o método.</h2><div class="placeholder">Laptop no scroll; imagem estática equivalente em movimento reduzido</div><p>Ferramentas comprovadas: Kali Linux, Python, Flask, Selenium, Firefox e Bash.</p><a class="button" href="#projetos">Seguir para projetos</a></section>
+    <section id="projetos"><span class="tag">4 · Projetos</span><h2>O trabalho por trás da trajetória.</h2><div class="cards"><article><small>Engenharia</small><h3>PUCPR Racing</h3><p>Resumo, método e contexto.</p></article><article><small>AppSec</small><h3>Segurança de aplicação</h3><p>Texto sanitizado e sem link confidencial.</p></article><article><small>Laboratório</small><h3>Kali de sessões e rede</h3><p>Prática controlada e reproduzível.</p></article></div></section>
+    <section id="contato"><span class="tag">5 · Contato</span><h2>Vamos construir a próxima conversa.</h2><p>Descreva seu projeto ou escreva diretamente por email.</p><a class="button" href="mailto:mrlbertelli@gmail.com">Enviar email</a><a class="button" href="#inicio">Voltar ao início</a></section>
+  </main>
+</body>
+</html>
